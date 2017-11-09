@@ -4,9 +4,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import br.com.dao.CarroDao;
 import br.com.domain.Carro;
 
+@Component
 public class CarroService {
 
 	private CarroDao db = new CarroDao();
