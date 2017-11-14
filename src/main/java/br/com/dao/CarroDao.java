@@ -7,12 +7,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.mysql.jdbc.Statement;
 
 import br.com.domain.Carro;
 import br.com.util.BaseDao;
 
-
+@Component
 public class CarroDao extends BaseDao {
 
 	//Busca por ID

@@ -1,5 +1,6 @@
 package br.com.rest;
 
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -13,6 +14,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.domain.Carro;
 import br.com.domain.Response;
@@ -23,7 +25,8 @@ import br.com.service.CarroService;
 @Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")	
 public class CarroResources {
 
-	private CarroService carroService = new CarroService();
+	@Autowired
+	private CarroService carroService;
 
 	@GET
 	public List<Carro> get() {
@@ -40,7 +43,7 @@ public class CarroResources {
 	
 	@GET
 	@Path("/tipo/{tipo}")
-	public List<Carro> getByTipo(@PathParam("tipo") String tipo){
+	public List<Carro> getByTipo(@PathParam("tipo") String tipo) throws SQLException{
 		List<Carro> carros = carroService.findByType(tipo);
 		return carros;
 	}
@@ -54,7 +57,7 @@ public class CarroResources {
 	
 	@DELETE
 	@Path("{id}")
-	public Response delete(@PathParam("id") Long id) {
+	public Response delete(@PathParam("id") Long id) throws SQLException {
 				carroService.delete(id);
 				return Response.Ok("carro deletado com sucesso");
 	}
